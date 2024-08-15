@@ -1,0 +1,5 @@
+{fromqq} -> 来自的QQ号
+{fromqq_name} -> 来自的QQ号名字
+{fromgroup} -> 来自的QQ群号
+{fromgroup_name} -> 来自的QQ群名字
+{星月} -> 崽名
