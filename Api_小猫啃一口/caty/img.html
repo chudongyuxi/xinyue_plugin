@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #image {
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+      width: 50%; /* 基于父元素宽度的50% */
+      aspect-ratio: 1/1;
+    }
+
+    #image .img-bg {
+      width: 100%;
+      height: 100%; /* 使用百分比以确保图片根据父容器的大小调整 */
+      object-fit: cover; /* 保持图片的内容显示为正方形 */
+    }
+
+    #image .img-head {
+      position: absolute;
+      width: 30%; /* 使用百分比控制图片的大小 */
+      height: 30%; /* 确保高度和宽度相同，保持正方形 */
+      object-fit: contain;
+      bottom: -7%;
+      left: 21%;
+      rotate: -29deg;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="image">
+    <img class="img-bg" src="images/bg.png" alt="" />
+    <img class="img-head" id="head-img" src="" alt="" />
+  </div>
+</body>
+<script>
+  function getUrlParams(objName) {
+    var data = window.location.href;
+    if (data.indexOf("?") < 0) return undefined; //判断是否存在参数
+    var allParamsArr = data.split("?")[1].split("&"), returnObj = {};
+    if (allParamsArr.length == 0) return undefined; //参数是否带惨，狗屁的有的人无聊带问号不带参数的
+    for (var i = 0; i < allParamsArr.length; i++) {
+      returnObj[`${allParamsArr[i].split("=")[0]}`] = allParamsArr[i].split("=")[1]
+    }
+    return returnObj[`${objName}`]
+  }
+  window.onload = function() {
+    let qq = getUrlParams('qq') || ''
+    //let api_head = `http://q1.qlogo.cn/g?b=qq&nk=${qq}&s=100`;
+    let api_head = `http://q.qlogo.cn/headimg_dl?dst_uin=${qq}&spec=640&img_type=jpg`
+    let head = document.getElementById('head-img');
+    head.src = api_head
+  }
+</script>
+</html>
